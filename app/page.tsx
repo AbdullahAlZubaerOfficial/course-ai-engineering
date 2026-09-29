@@ -162,9 +162,9 @@ export default function Home() {
         selectedMonthFilter={selectedMonthFilter}
       />
 
-      <main className="mx-auto max-w-7xl flex-1 px-4 pt-8 sm:px-8 w-full">
+      <main className="mx-auto max-w-7xl flex-1 px-2.5 sm:px-6 md:px-8 pt-4 sm:pt-8 w-full">
         {activeTab === "curriculum" && (
-          <div className="space-y-8">
+          <div className="space-y-4 sm:space-y-8">
             {displayedMonths.map((month) => (
               <MonthAccordion
                 key={month.monthNumber}
