@@ -13,6 +13,7 @@ import {
   StickyNote,
   Menu,
   X,
+  Sparkles,
 } from "lucide-react";
 import { UserProgress } from "../types/roadmap";
 
@@ -38,6 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onResetProgress,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [imgFailed, setImgFailed] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const totalDaysCompleted = progress.completedDays.length;
@@ -76,11 +78,18 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="mx-auto flex h-14 sm:h-16 max-w-7xl items-center justify-between px-3 sm:px-6 md:px-8 gap-2 sm:gap-4">
         {/* Brand Logo & Title */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <img
-            src="https://zubaer.hosensoft.com/myimage.png"
-            alt="Logo"
-            className="h-8 w-8 sm:h-9 sm:w-9 rounded-xl object-cover border border-slate-200 shadow-xs"
-          />
+          {!imgFailed ? (
+            <img
+              src="https://zubaer.hosensoft.com/myimage.png"
+              alt="Logo"
+              onError={() => setImgFailed(true)}
+              className="h-8 w-8 sm:h-9 sm:w-9 rounded-xl object-cover border border-slate-200 shadow-xs"
+            />
+          ) : (
+            <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl bg-pink-600 text-white shadow-xs">
+              <Sparkles className="h-5 w-5" />
+            </div>
+          )}
           <div className="flex items-center gap-2">
             <h1 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
               120-Day AI Roadmap
